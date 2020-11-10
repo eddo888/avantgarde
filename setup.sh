@@ -6,25 +6,23 @@ then
 	exit 1
 fi
 
-pwd=$(pwd)
-
-pushd $KAFKA_HOME
-
 declare -a scripts
 
 scripts=(
-	create-queue.sh
-	describe-queue.sh
-	publish-to-queue.sh
+	start.sh
 	start-kafka.sh
 	start-zookeeper.sh
-	start.sh
 	status.sh
-	stop.sh
+	create-queue.sh
+	describe-queue.sh
 	subscribe-to-queue.sh
+	publish-to-queue.sh
+	stop.sh
 )
 
+pwd=$(pwd)
 
+pushd $KAFKA_HOME
 
 for script in ${scripts[@]}
 do
