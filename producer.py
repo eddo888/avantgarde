@@ -6,6 +6,10 @@ from kafka import KafkaProducer
 producer = KafkaProducer(bootstrap_servers='localhost:9092')
 
 now=arrow.now()
-print(now)
+print(now.humanize())
 
-producer.send('quickstart-events', now.toISOString())
+bits=now.format('YYYY-MM-DD HH:mm:ss ZZ').encode('utf8')
+print(bits)
+
+producer.send('quickstart-events', bits)
+producer.flush()
