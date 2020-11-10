@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-kafka_home=~/apps/kafka-2.6.0-src
+if [ -z "$KAFKA_HOME" ] || [ ! -d "$KAFKA_HOME" ]
+then
+	echo "can't find \$KAFKA_HOME=$KAFKA_HOME"
+	exit 1
+fi
 
 pwd=$(pwd)
 
-pushd $kafka_home
+pushd $KAFKA_HOME
 
 declare -a scripts
 
