@@ -3,7 +3,7 @@
 import re, sys, os, arrow
 from kafka import KafkaProducer
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092')
+producer = KafkaProducer(bootstrap_servers='voldemort:9092')
 
 now=arrow.now()
 print(now.humanize())

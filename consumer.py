@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
-from kafka import KafkaConsumer
+import os, re, sys, json
 
-consumer = KafkaConsumer(bootstrap_servers='localhost:9092')
+from kafka import KafkaConsumer
+from Perdy.pretty import prettyPrintLn
+
+consumer = KafkaConsumer(bootstrap_servers='voldemort:9092')
 consumer.subscribe(['quickstart-events'])
 
 for message in consumer:
-	print(message.value)
+	text = message.value.decode('utf8')
+	d = json.loads(text)
+	prettyPrintLn(d)
 
 
 		  
