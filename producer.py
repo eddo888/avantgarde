@@ -4,12 +4,20 @@ import re, sys, os, arrow
 from kafka import KafkaProducer
 
 producer = KafkaProducer(bootstrap_servers='voldemort:9092')
+topic = 'quickstart-events'
 
-now=arrow.now()
-print(now.humanize())
+if len(sys.argv) > 1:
+	for file in sys.argv[1:]:
+		with open(file,'rb') as input:
+			producer.send(topic, input.read())
+			producer.flush()
 
-bits=now.format('YYYY-MM-DD HH:mm:ss ZZ').encode('utf8')
-print(bits)
+else:
+	now=arrow.now()
+	print(now.humanize())
 
-producer.send('quickstart-events', bits)
-producer.flush()
+	bits=now.format('YYYY-MM-DD HH:mm:ss ZZ').encode('utf8')
+	print(bits)
+
+	producer.send(topic, bits)
+	producer.flush()
