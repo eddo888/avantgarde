@@ -23,6 +23,7 @@ for message in consumer:
 			printXML(text, colour=True)
 		except:
 			print(text)
+	print(horizon)
 			
 
 
