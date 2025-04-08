@@ -3,7 +3,7 @@
 import re, sys, os, arrow
 from kafka import KafkaProducer
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092')
+producer = KafkaProducer(bootstrap_servers='192.168.1.220:9092')
 topic = 'quickstart-events'
 
 if len(sys.argv) > 1:

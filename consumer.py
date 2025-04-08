@@ -6,10 +6,10 @@ from kafka import KafkaConsumer
 from Perdy.pretty import prettyPrintLn
 from Perdy.parser import printXML
 
-consumer = KafkaConsumer(bootstrap_servers='localhost:9092')
+consumer = KafkaConsumer(bootstrap_servers='192.168.1.220:9092')
 consumer.subscribe(['quickstart-events'])
 
-horizon = '_'*int(os.environ['COLUMNS'])
+horizon = '_'*int(os.environ.get('COLUMNS',80))
 
 for message in consumer:
 	text = message.value.decode('utf8')
@@ -24,7 +24,3 @@ for message in consumer:
 		except:
 			print(text)
 	print(horizon)
-			
-
-
-		  
